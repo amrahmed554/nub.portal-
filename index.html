@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="padding-bottom:20px;">NUB Portal Student Gate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+           /* تغيير اللون الأساسي للخلفية */
+           background-color: #f0f0f0;
+
+           /* إضافة صورة كخلفية */
+           background-image: url('./brick-wall-texture_1194-5290.avif');
+
+           /* إعداد الصورة بحيث تغطي كامل الشاشة */
+           background-size: cover;
+
+           /* جعل الصورة ثابتة أثناء التمرير */
+           background-attachment: fixed;
+
+           /* ضبط تموضع الصورة */
+           background-position: center;
+
+           /* منع تكرار الصورة */
+           background-repeat: no-repeat;
+        }
+
+        .header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            
+        }
+
+        .portal-title {
+            text-align: center;
+            color: #666;
+            margin: 20px 0;
+            font-size: 24px;
+        }
+
+        .arabic-text {
+            text-align: center;
+            color: red;
+            margin: 20px 0;
+            font-size: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .icon.yammer  { background-color: #0078D4; }
+        .icon.admission { background-color: #DC004E; }
+        .icon.timetable { background-color: #FF6B00; }
+        .icon.academic { background-color: #00A67E; }
+        .icon.grades { background-color: #8E44AD; }
+        .icon.lms { background-color: #00A67E; }
+        .icon.fees { background-color: #00A67E; }
+        .icon.attendance { background-color: #8E44AD; }
+        .icon.absent { background-color: #FF6B00; }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sidebar {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #004d1a;
+            transition: 0.3s;
+            padding: 20px;
+            color: white;
+            z-index: 1000;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .profile-section {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-bottom: 20px;
+        }
+
+        .student-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .student-info {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        .greeting-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .greeting-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .greeting-text {
+            font-size: 18px;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .action-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            color: #004d1a;
+            transition: transform 0.2s;
+        }
+
+        .action-button:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-btn {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div>AMR AHMED ABASS AWES</div>
+        <div class="menu-btn">☰</div>
+    </header>
+
+    <div class="sidebar">
+        <div class="profile-section">
+            <img style="left: 60px;" src="./WhatsApp Image 2025-04-21 at 23.41.07_45cb2783.jpg" alt="Profile Image" class="profile-image">
+            <div class="student-name">MENNA HUSSIN<br>RASHWAN ALI</div>
+            <div class="student-info">
+                <div>faculty of pharmacy</div>
+                <div>pharmacy</div>
+                <div>Freshman | 221010189</div>
+            </div>
+        </div>
+        <div class="greeting-section">
+            <div class="greeting-title">University Greeting</div>
+            <div class="greeting-text">Welcome In Your New Portal</div>
+            <div class="action-buttons">
+                <a href="#" class="action-button">⚡</a>
+                <a href="#" class="action-button">🔑</a>
+                <a href="#" class="action-button">ع</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="logo-container">
+        <img src="./شعار_جامعة_النهضة.png" style="border-radius: 40%;" alt="NUB Logo" class="logo">
+    </div>
+
+    <h1 class="portal-title">NUB Portal Student Gate</h1>
+    <div class="arabic-text">أستبيان الجودة</div>
+
+    <div class="grid-container">
+        <a href="#" class="grid-item">
+            <div class="icon yammer" >
+                <img id="mom"
+                src="./WhatsApp Image 2025-01-14 at 03.30.49_4729de42.jpg" alt="NUB Yammer">
+            </div>
+            <span>NUB Yammer</span>
+        </a>
+        <a href="#" class="grid-item">
+            <div class="icon admission">
+                <img id="mom" src="./WhatsApp Image 2025-01-14 at 03.30.50_2ad82315.jpg" alt="Admission Application">
+            </div>
+            <span>Admission Application</span>
+        </a>
+        <a href="#" class="grid-item">
+            <div class="icon timetable">
+                <img id="mom" src="./WhatsApp Image 2025-01-14 at 03.30.50_78ffd574.jpg" alt="Study Time Table">
+            </div>
+            <span>Study Time Table</span>
+        </a>
+        <a href="#" class="grid-item">
+            <div class="icon academic">
+                <img id="mom" src="./WhatsApp Image 2025-01-14 at 03.30.50_da65183b.jpg" alt="Academic Registration">
+            </div>
+            <span>Academic Registration</span>
+        </a>
+        <a href="#" class="grid-item">
+            <div class="icon grades">
+                <img src="#" alt="Student Grades">
+            </div>
+            <span>Student Grades</span>
+        </a>
+        <a href="#" class="grid-item">
+            <div class="icon lms">
+                <img src="lms-icon.png" alt="LMS">
+            </div>
+            <span>LMS</span>
+        </a>
+        <a href="#" class="grid-item">
+            <div class="icon fees">
+                <img src="fees-icon.png" alt="Fee's Application">
+            </div>
+            <span>Fee's Application</span>
+        </a>
+        <a href="#" class="grid-item">
+            <div class="icon attendance">
+                <img src="attendance-icon.png" alt="Attendance Report">
+            </div>
+            <span>Attendance Report</span>
+        </a>
+        <a href="#" class="grid-item">
+            <div class="icon absent">
+                <img src="absent-icon.png" alt="Absent Report">
+            </div>
+            <span>Absent Report</span>
+        </a>
+    </div>
+<style>
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 50%;
+        }
+    }
+#mom{ width: 80px; /* عرض الأيقونة */
+    height: 80px; /* ارتفاع الأيقونة */
+        object-fit: cover; /* لجعل الصورة تغطي الإطار بدون تشويه */
+        border-radius: 50%; }
+</style>
+<style>
+    .grid-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .grid-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: calc(50% - 20px);
+        max-width: 200px;
+    }
+
+    .icon {
+        margin-bottom: 10px;
+    }
+
+    .arabic-text {
+        margin: 40px 0;
+    }
+</style>
+
+
+
+
+    <script>
+        document.querySelector('.menu-btn').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+    </script>
+<style>
+    @media (max-width: 768px) {
+        .logo-container {
+            text-align: left;
+            padding-left: 89px;
+        }
+        
+        .logo {
+            width: 89px;
+            height: 89px;
+        }
+        
+        .portal-title {
+            text-align: left;
+            padding-left: 89px;
+            margin-top: 0;
+        }
+        
+        .arabic-text {
+            text-align: center;
+            margin-top: 67px;
+            margin-bottom: 89px;
+        }
+      
+
+        .header {
+            padding-top: 0;
+        }
+ 
+
+</style>
+@media (max-width: 768px) {
+    .grid-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .grid-item:nth-child(2n) {
+        padding-bottom: 20px !important;
+    }
+}
+
+   
+
+</body>
+</html>
